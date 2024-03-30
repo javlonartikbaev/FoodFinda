@@ -83,15 +83,5 @@ class Orders(models.Model):
         verbose_name_plural = 'orders'
 
 
-class MenuItemRestourantHas(models.Model):
-    name_item = models.CharField(max_length=240)
-    price = models.CharField(max_length=240)
-    quantity = models.IntegerField(default=0)
-    restaurant = models.ManyToManyField(Restaurant)M
-
-    class Meta:
-    db_table = 'menu_item_has_restaurants'
-    verbose_name = 'menu_item_has_restaurants'
-    verbose_name_plural = 'menu_item_has_restaurants'
 
 
