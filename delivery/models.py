@@ -37,23 +37,13 @@ class Categories(models.Model):
         return self.name_category
 
 
-class ImgItems(models.Model):
-    img_item = models.ImageField(upload_to="delivery/img_items/img/", default="")
-
-    class Meta:
-        db_table = "img_items"
-        verbose_name = "img_item"
-        verbose_name_plural = "img_items"
-
-
 class MenuItems(models.Model):
     name_item = models.CharField(max_length=240)
     price = models.CharField(max_length=240)
-    quantity = models.IntegerField(default=0, blank=True)
+    quantity = models.IntegerField(null=False, blank=True)
     info = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default="")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, default="")
-    img_items = models.ManyToManyField(ImgItems)
 
     class Meta:
         db_table = "menu_items"
@@ -62,6 +52,19 @@ class MenuItems(models.Model):
 
     def __str__(self):
         return self.name_item
+
+
+class ImgItems(models.Model):
+    img_item = models.ImageField(upload_to="delivery/img_items/img/", default="")
+    menu_item_id = models.ForeignKey(MenuItems, on_delete=models.CASCADE, default=None)
+
+    class Meta:
+        db_table = "img_items"
+        verbose_name = "img_item"
+        verbose_name_plural = "img_items"
+
+    def __str__(self):
+        return self.menu_item_id.name_item
 
 
 class Basket(models.Model):
