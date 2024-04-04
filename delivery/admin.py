@@ -31,7 +31,7 @@ class AdminMenuItem(admin.ModelAdmin):
 
 
 class AdminImgItems(admin.ModelAdmin):
-    list_display = ("img_item",)
+    list_display = ("img_item", "menu_item_id")
 
 
 class AdminBaskets(admin.ModelAdmin):
