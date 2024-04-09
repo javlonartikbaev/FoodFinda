@@ -21,7 +21,7 @@ class Restaurant(models.Model):
         db_table = "restaurant"
         verbose_name = "restaurant"
         verbose_name_plural = "restaurants"
-        ordering = ["status"]
+        ordering = ["-status"]
 
 
 class Categories(models.Model):
