@@ -10,11 +10,12 @@ class AdminRestaurant(admin.ModelAdmin):
         "end_time",
         "img_restaurant",
         "status",
+        "restaurant_slug",
     )
 
 
 class AdminCategories(admin.ModelAdmin):
-    list_display = ("name_category", "img_category")
+    list_display = ("name_category", "img_category", "category_slug")
 
 
 class AdminMenuItem(admin.ModelAdmin):
@@ -25,6 +26,7 @@ class AdminMenuItem(admin.ModelAdmin):
         "info",
         "restaurant",
         "category",
+        "menu_slug",
     )
 
 

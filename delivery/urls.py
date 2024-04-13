@@ -27,5 +27,10 @@ urlpatterns = [
     path("categories/", views.categories, name="categories"),
     path("contact/", views.contact, name="contact"),
     path("restaurants/", views.restaurants, name="restaurants"),
-    path("contact/", views.feedback, name="contact_form"),
+    path(
+        "restaurants/<slug:restaurant_slug>",
+        views.selected_restaurant,
+        name="selected_restaurant",
+    ),
+    path("menu_items/<slug:item_slug>/", views.menu_items, name="menu_items"),
 ]

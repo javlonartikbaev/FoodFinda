@@ -55,7 +55,7 @@
                     <div class="login_text"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span
                             class="padding_left10">Call : +01 1234567890</span></a></div>
                 </form>
-                <a class="logo" href="index.html"><img src="{% static '/images/logo.png' %}"></a></a>
+                <a class="logo" href="{% url 'main_page' %}"><img src="{% static '/images/logo.png' %}"></a></a>
                 <span class="toggle" onclick="openNav()"><i class="fa fa-bars"></i></span>
                 <div class="login_text"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span
                         class="padding_left10">Email : Demo@gmail.com</span></a></div>
@@ -256,7 +256,7 @@
                             <h1 class="blog_text">{{restaurant.name_restaurant  }}</h1>
                             <p class="lorem_text">{{ restaurant.start_time  }} && {{restaurant.end_time}}</p>
                             <p class="lorem_text">{{ restaurant.status}}</p>
-                            <div class="readmore_btn"><a href="#">Read More</a></div>
+                            <div class="readmore_btn"><a href="{{ restaurant.get_absolute_url }}">Read More</a></div>
                         </div>
                     </div>
                 {% endfor %}
@@ -268,7 +268,7 @@
         <!-- contact section start -->
         <div class="contact_section layout_padding">
             <div class="container">
-{#                <div class="contact_section_2">#}
+                <div class="contact_section_2">
 {#                    <div class="row">#}
 {#                        <div class="col-md-12">#}
 {#                            <h1 class="contact_taital">Get In Touch</h1>#}
