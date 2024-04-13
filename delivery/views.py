@@ -1,3 +1,5 @@
+from tkinter import Menu
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -25,26 +27,40 @@ def restaurants(request):
     return render(request, "delivery/restaurants.html", context)
 
 
+def selected_restaurant(request, restaurant_slug):
+    restaurant = get_object_or_404(Restaurant, restaurant_slug=restaurant_slug)
+    menu_items = MenuItems.objects.filter(restaurant=restaurant)
+    categories = Categories.objects.all()
+    img_items = MenuItems.objects.filter(id=menu_items[0].id)
+    context = {
+        "restaurant": restaurant,
+        "menu_items": menu_items,
+        "categories": categories,
+        "img_items": img_items,
+    }
+    return render(request, "delivery/menu_items.html", context)
+
+
 def basket(request):
     template = loader.get_template("delivery/basket.html")
     return HttpResponse(template.render())
 
 
 def contact(request):
-    template = loader.get_template("delivery/contact.html")
-    return HttpResponse(template.render())
-
-
-def feedback(request):
-
     if request.method == "POST":
         name = request.POST.get("name")
-        phone_number = request.POST.get("phoneNumber")
+        phone_number = request.POST.get("phone_number")
         email = request.POST.get("email")
         message = request.POST.get("message")
 
-        feedback = Users.objects.create(
-            name=name, phone_number=phone_number, email=email, message=message
+        Users.objects.create(
+            name=name, phoneNumber=phone_number, email=email, message=message
         )
-        return HttpResponseRedirect("/main_page/")
-    return render(request, "delivery/index.html")
+        return HttpResponseRedirect("/")
+    return render(request, "delivery/contact.html")
+
+
+def menu_items(request, item_slug):
+    items = get_object_or_404(MenuItems, slug=item_slug)
+    data = {"menu_items": items}
+    return render(request, "delivery/menu_items.html", data)

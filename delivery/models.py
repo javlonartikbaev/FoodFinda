@@ -1,6 +1,9 @@
 from django.db import models
 from datetime import datetime
 
+from django.urls import reverse
+
+
 # Create your models here.
 
 
@@ -14,6 +17,10 @@ class Restaurant(models.Model):
     img_restaurant = models.ImageField(upload_to="delivery/img/", default="")
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default="закрыто")
 
+    restaurant_slug = models.SlugField(
+        max_length=255, unique=True, db_index=True, default=""
+    )
+
     def __str__(self):
         return self.name_restaurant
 
@@ -23,10 +30,18 @@ class Restaurant(models.Model):
         verbose_name_plural = "restaurants"
         ordering = ["-status"]
 
+    def get_absolute_url(self):
+        return reverse(
+            "selected_restaurant", kwargs={"restaurant_slug": self.restaurant_slug}
+        )
+
 
 class Categories(models.Model):
     name_category = models.CharField(max_length=160)
     img_category = models.ImageField(upload_to="delivery/img_category/", default="")
+    category_slug = models.SlugField(
+        max_length=255, unique=True, db_index=True, default=""
+    )
 
     class Meta:
         db_table = "category"
@@ -44,6 +59,11 @@ class MenuItems(models.Model):
     info = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default="")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, default="")
+
+    menu_slug = models.SlugField(max_length=255, unique=True, db_index=True, default="")
+
+    def get_absolute_url(self):
+        return reverse("menu_items", kwargs={"item_slug": self.menu_slug})
 
     class Meta:
         db_table = "menu_items"

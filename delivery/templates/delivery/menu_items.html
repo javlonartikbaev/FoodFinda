@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Blog</title>
+    <title>Contact</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -55,7 +55,7 @@
                     <div class="login_text"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span
                             class="padding_left10">Call : +01 1234567890</span></a></div>
                 </form>
-                <a class="logo" href="{% url 'main_page' %}"><img src="{% static '/images/logo.png' %}"></a></a>
+                <a class="logo" href="{% url 'main_page' %}"><img src="{% static '/images/logo.png' %}"></a>
                 <span class="toggle" onclick="openNav()"><i class="fa fa-bars"></i></span>
                 <div class="login_text"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span
                         class="padding_left10">Email : Demo@gmail.com</span></a></div>
@@ -67,59 +67,58 @@
 <!-- layout main section start -->
 <div class="container-fluid">
     <div class="layout_main">
-        <!-- banner section start -->
-        <div class="banner_section">
-            <div class="container">
-                <div class="menu_main">
-                    <div class="custome_menu">
-                        <ul>
-                            <li><a href="{% url 'main_page' %}">Home</a></li>
-                            <li><a href="{% url 'categories' %}">Categories</a></li>
-                            <li class="active"><a href="{% url 'restaurants' %}">Restaurants</a></li>
-                            <li><a href="{% url 'basket' %}">Basket</a></li>
-                            <li><a href="{% url 'contact' %}">Contacts</a></li>
-                        </ul>
-                    </div>
-                    <div class="login_menu">
-                        <ul>
-                            <li><a href="#">Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- banner section end -->
-        <!-- blog section start -->
-        <div class="blog_section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h1 class="blog_taital">Collections Food In city</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="blog_section_2 layout_padding">
-            <div class="container">
-                <div class="row">
-                    {% for restaurant in restaurants %}
-                        <div class="row">
-                        <div class="col-md-6">
-                            <div class="blog_img"><img src="{{restaurant.img_restaurant.url  }}"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="blog_taital_main">
-                                <h1 class="blog_text">{{ restaurant.name_restaurant }}</h1>
-                                <p class="lorem_text">{{ restaurant.start_time }} && {{ restaurant.end_time }}</p>
-                                <p class="lorem_text">{{ restaurant.status}}</p>
-                                <div class="readmore_btn"><a href="{{ restaurant.get_absolute_url }}">Read More</a></div>
+        <!-- layout main section start -->
+        <div class="container-fluid">
+            <div class="layout_main">
+                <!-- banner section start -->
+                <div class="banner_section">
+                    <div class="container">
+                        <div class="menu_main">
+                            <div class="custome_menu">
+                                <ul>
+                                    <li><a href="{% url 'main_page' %}">Home</a></li>
+                                    <li><a href="{% url 'categories' %}">Categories</a></li>
+                                    <li><a href="{% url 'restaurants' %}">Restaurants</a></li>
+                                    <li><a href="{% url 'basket' %}">Basket</a></li>
+                                    <li class="active"><a href="{% url 'contact' %}">Contacts</a></li>
+                                </ul>
+                            </div>
+                            <div class="login_menu">
+                                <ul>
+                                    <li><a href="#">Login</a></li>
+                                </ul>
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                </div>
+
+                <!-- banner section end -->
+                <div class="blog_section_2 layout_padding">
+                    <div class="container">
+                        {% for item in menu_items %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {% if item.imgitems_set.exists %}
+                                        {% for img_item in item.imgitems_set.all %}
+                                            <div class="blog_img" style="width: 300px; height: 300px"><img src="{{ img_item.img_item.url }}" ></div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="blog_taital_main">
+                                        <h1 class="blog_text">{{ item.name_item }}</h1>
+                                        <p class="lorem_text">{{ item.price }} </p>
+                                        <p class="lorem_text">{{ item.info }}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-            <!-- blog section end -->
+
+
             <!-- footer section start -->
             <div class="footer_section">
                 <div class="container">
@@ -127,8 +126,8 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-6">
                                 <h2 class="footer_logo">Foodfinda</h2>
-                                <p class="footer_text">t is a long established fact that a reader will be distracted by
-                                    the readable content of a page when looking at its layout. The point of </p>
+                                <p class="footer_text">t is a long established fact that a reader will be distracted
+                                    by the readable content of a page when looking at its layout. The point of </p>
                             </div>
                             <div class="col-lg-3 col-md-6">
                                 <h2 class="useful_text">Navigation</h2>
@@ -149,9 +148,11 @@
                                                                      aria-hidden="true"></i><span
                                         class="padding_left15">Loram ipusm New York, NY 36524</span></a></div>
                                 <p class="address_text">Customer Service:</p>
-                                <div class="map_icon"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span
+                                <div class="map_icon"><a href="#"><i class="fa fa-phone"
+                                                                     aria-hidden="true"></i><span
                                         class="padding_left15">( +01 1234567890 )</span></a></div>
-                                <div class="map_icon"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span
+                                <div class="map_icon"><a href="#"><i class="fa fa-envelope"
+                                                                     aria-hidden="true"></i><span
                                         class="padding_left15">demo@gmail.com</span></a></div>
                             </div>
                             <div class="col-lg-3 col-md-6">
@@ -180,7 +181,6 @@
             <!-- footer section end -->
         </div>
     </div>
-</div>
     <!-- layout main section end -->
     <!-- copyright section start -->
     <div class="copyright_section">
