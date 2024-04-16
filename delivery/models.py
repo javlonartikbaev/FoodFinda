@@ -42,6 +42,7 @@ class Categories(models.Model):
     category_slug = models.SlugField(
         max_length=255, unique=True, db_index=True, default=""
     )
+    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default="")
 
     class Meta:
         db_table = "category"
