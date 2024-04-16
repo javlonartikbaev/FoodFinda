@@ -30,13 +30,12 @@ def restaurants(request):
 def selected_restaurant(request, restaurant_slug):
     restaurant = get_object_or_404(Restaurant, restaurant_slug=restaurant_slug)
     menu_items = MenuItems.objects.filter(restaurant=restaurant)
-    categories = Categories.objects.all()
-    img_items = MenuItems.objects.filter(id=menu_items[0].id)
+    categories = Categories.objects.filter(restaurant_id=restaurant.id)
+
     context = {
         "restaurant": restaurant,
         "menu_items": menu_items,
         "categories": categories,
-        "img_items": img_items,
     }
     return render(request, "delivery/menu_items.html", context)
 
