@@ -1,0 +1,44 @@
+.row-grid{
+    display: grid;
+    row-gap: 100px;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+}
+.col-md-6-grid{
+    margin: 3px;
+    border: 1px solid #fff;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.item_img{
+    margin-top: 25px;
+    width: 150px;
+    height: auto;
+}
+.item_name{
+    margin-top: 25px;
+    display: block;
+    align-items: center;
+    color: white;
+}
+.item_price{
+    margin: 15px;
+    font-size: large;
+}
+.product_main{
+    color: white;
+}
+.addto-b{
+    width: 190px;
+    height: 40px;
+    background-color: #8eb50b;
+    margin-bottom: 15px;
+}
+.addto-b:hover{
+    width: 190px;
+    height: 40px;
+    background-color: #ffbf00;
+    margin-bottom: 15px;
+}
