@@ -87,31 +87,41 @@
             </div>
             <!-- banner section end -->
 
-            <!-- category menu start -->
+            <!-- restaurant menu section start -->
+            {% for category in categories %}
             <div class="blog_section">
                <div class="container">
                   <div class="row">
                      <div class="col-sm-12">
-                        <h1 class="blog_taital">Pizza</h1>
+                        <h1 class="blog_taital">{{ item.name_item }}</h1>
                      </div>
                   </div>
                </div>
             </div>
+            {% for item in items %}
+            {% if item.category == category %}
             <div class="service_section_2 layout_padding">
                <div class="container">
                   <div class="row-grid">
                      <div class="col-md-6-grid">
-                        <div class="item_img"><img src="images/pizza.png"></div>
+                        {% if item.imgitems_set.exists %}
+                        {% for img_item in item.imgitems_set.all %}
+                        <div class="item_img"><img src="{{ img_item.img_item.url }}"></div>
+                        {% endfor %}
+                        {% endif %}
                         <div class="product_main">
-                           <h1 class="item_name">Chesee</h1>
-                           <p class="item_price">13.300 uzs</p>
+                           <h1 class="item_name">{{ item.name_item }}</h1>
+                           <p class="item_price">{{ item.price }} uzs</p>
                            <button class="addto-b">+Basket</button>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <!-- category menu section end -->
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            <!-- restaurant menu section end -->
 
             <!-- footer section start -->
             <div class="footer_section">
