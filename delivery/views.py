@@ -60,6 +60,6 @@ def contact(request):
 
 
 def menu_items(request, item_slug):
-    items = get_object_or_404(MenuItems, slug=item_slug)
+    items = get_object_or_404(MenuItems, menu_slug=item_slug)
     data = {"menu_items": items}
     return render(request, "delivery/menu_items.html", data)
