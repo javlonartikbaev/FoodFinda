@@ -30,3 +30,23 @@ def update_item(request, item_slug):
     else:
         form = MenuItemForm(instance=item)
     return render(request, "adminPanel/AdminUpdateMenuItems.html", {'form': form})
+
+
+def add_item(request):
+    if request.method == 'POST':
+        form = MenuItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('menu_items')
+    else:
+        form = MenuItemForm()
+    return render(request, 'adminPanel/AdminItemAdd.html', {"form": form})
+
+
+def delete_item(request, item_slug):
+    item = get_object_or_404(MenuItems, menu_slug=item_slug)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('menu_items')
+
+    return render(request, 'adminPanel/deleteItem.html', {'item': item})

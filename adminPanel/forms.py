@@ -14,4 +14,4 @@ from delivery.models import MenuItems
 class MenuItemForm(forms.ModelForm):
     class Meta:
         model = MenuItems
-        fields = ['name_item', 'price', 'quantity', 'info', 'restaurant', 'category']
+        fields = ['name_item', 'price', 'quantity', 'info', 'restaurant', 'category', 'menu_slug']

@@ -154,14 +154,12 @@
 
     </aside>
     <div class="page-wrapper">
-        <div class="container-fluid">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-
-                <button type="submit">Сохранить изменения</button>
-            </form>
-        </div>
+        <h2>Вы уверены, что хотите удалить "{{ item.name_item }}"?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Удалить</button>
+            <a href="{% url 'menu_items' %}">Отмена</a>
+        </form>
     </div>
     <!-- ============================================================== -->
     <!-- End Left Sidebar - style you can find in sidebar.scss  -->
