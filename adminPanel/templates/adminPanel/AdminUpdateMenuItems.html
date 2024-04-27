@@ -38,7 +38,7 @@
     <!-- ============================================================== -->
     <!-- Topbar header - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <header class="topbar" data-navbarbg="skin6">
+<header class="topbar" data-navbarbg="skin6">
         <nav class="navbar top-navbar navbar-expand-md navbar-dark">
             <div class="navbar-header" data-logobg="skin6">
                 <!-- ============================================================== -->
@@ -85,25 +85,31 @@
                     <li class="nav-item search-box">
                         <a class="nav-link text-muted" href="javascript:void(0)"><i class="ti-search"></i></a>
                         <form class="app-search" style="display: none;">
-                            <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
+                            <label>
+                                <input type="text" class="form-control" placeholder="Search &amp; enter">
+                            </label> <a
                                 class="srh-btn"><i class="ti-close"></i></a></form>
                     </li>
                 </ul>
-
                 <!-- ============================================================== -->
                 <!-- Right side toggle and nav items -->
                 <!-- ============================================================== -->
-                <ul class="navbar-nav">
+                                <ul class="navbar-nav">
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#"
-                           id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{% static 'images/users/1.jpg' %}" alt="user" class="profile-pic me-2">Markarn Doe
-                        </a>
+                        <div class="dropdown-toggle text-muted waves-effect waves-dark" href="#" id="navbarDropdown"
+                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <h3 style="color: black">Имя ресторана</h3>
+                        </div>
+                        |
+                        <div class="dropdown-toggle text-muted waves-effect waves-dark" >
+                            <a style="color: black; font-style: unset "  href="{% url 'logIn' %}">Выход</a>
+                        </div>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
                     </li>
+
                 </ul>
             </div>
         </nav>
@@ -126,22 +132,22 @@
                             class="mdi me-2 mdi-gauge"></i><span
                             class="hide-menu">Меню</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="pages-profile.html" aria-expanded="false">
+                                                href="{% url 'admin_categories' %}" aria-expanded="false">
                         <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu">Категории</span></a>
                     </li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="table-basic.html" aria-expanded="false"><i
+                                                href="{% url 'admin_img_item' %}" aria-expanded="false"><i
                             class="mdi me-2 mdi-table"></i><span
                             class="hide-menu">Картинки для блюд</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="AdminItemAdd.html" aria-expanded="false"><i
+                                                href="{% url 'admin_basket' %}" aria-expanded="false"><i
                             class="mdi me-2 mdi-emoticon"></i><span class="hide-menu">Корзина</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="AdminUpdateMenuItems.html" aria-expanded="false"><i
+                                                href="{% url 'admin_orders' %}" aria-expanded="false"><i
                             class="mdi me-2 mdi-earth"></i><span
                             class="hide-menu">Заказы</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="deleteItem.html" aria-expanded="false"><i
+                                                href="{% url 'users_feedback' %}" aria-expanded="false"><i
                             class="mdi me-2 mdi-book-open-variant"></i><span class="hide-menu">Отзывы</span></a>
                     </li>
                 </ul>

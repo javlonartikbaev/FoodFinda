@@ -98,6 +98,9 @@ class Basket(models.Model):
         verbose_name = "basket"
         verbose_name_plural = "baskets"
 
+    def __str__(self):
+        return self.menu_items.name_item
+
 
 class Orders(models.Model):
     STATUS_CHOICES = [
@@ -122,6 +125,11 @@ class Orders(models.Model):
         db_table = "orders"
         verbose_name = "order"
         verbose_name_plural = "orders"
+
+    def __str__(self):
+        items = [str(self.basket.name) for basket in self.basket.all()]
+        return ", ".join(items)
+
 
 
 class Users(models.Model):
